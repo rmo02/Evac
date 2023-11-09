@@ -1,12 +1,15 @@
 import { Button } from "../../components/Button";
-import { Container } from "./styles";
+import { Header } from "../../components/Header";
+import { Card, Container, ContainerButton, Image, SubTitle, Title } from "./styles";
+
+
 
 export function Home() {
   return (
     <div>
+      <Header />
       <Container>
-        <h1>Welcome to My App</h1>
-        <Button title='Entrar'/>
+
       </Container>
     </div>
   );

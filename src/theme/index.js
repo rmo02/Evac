@@ -1,7 +1,9 @@
 export const theme = {
   white: "#fff",
-  mainblue: "#3A9DF9",
   color: "#1D4ED8",
+  fundo:'#4263EB',
+  roxo300:'#3A9DF9',
+  roxo500:'#4839F9',
   ativo: "#020617",
   descricao: "#1E1E1E",
   bgblue: "#EFF6FF",

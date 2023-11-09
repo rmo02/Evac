@@ -1,8 +1,8 @@
 import { Botao } from "./styles";
 
-export function Button ({title}){
+export function Button ({title, onClick}){
     return (
-        <Botao>
+        <Botao onClick={onClick}>
             {title}
         </Botao>
     )
