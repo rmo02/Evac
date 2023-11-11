@@ -28,5 +28,5 @@ $ git checkout NomeDaBranch
 ```bash
 $ git add .
 $ git commit -m "Nome da alteração/inclusão feita"
-$ git push NomeDaBranch
+$ git push origin NomeDaBranch
 ```
