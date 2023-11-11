@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
 background-color: ${({ theme }) => theme.gradientblue200};
   padding: .8rem 0 .8rem;
-  position: fixed;
+  position: relative;
 
   top: 0px;
   width: 100%;

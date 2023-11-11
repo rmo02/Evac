@@ -1,0 +1,99 @@
+[{
+  "calendario_vacinacao": {
+    "ao_nascer": {
+      "BCG": {
+        "dose": "única",
+        "indicacao": "Formas graves de tuberculose"
+      },
+      "Hepatite_B_1": {
+        "dose": "1ª dose",
+        "indicacao": "Hepatite B"
+      }
+    },
+    "1_mes": {
+      "Hepatite_B_2": {
+        "dose": "2ª dose",
+        "indicacao": "Hepatite B"
+      },
+      "Tetravalente_DTP_Hib_1": {
+        "dose": "1ª dose",
+        "indicacao": "Difteria, tétano, coqueluche, meningite e outras infecções causadas pelo Haemophilus influenzae tipo b"
+      },
+      "VOP_1": {
+        "dose": "1ª dose",
+        "indicacao": "Poliomielite"
+      },
+      "VORH_1": {
+        "dose": "1ª dose",
+        "indicacao": "Diarréia por Rotavírus"
+      }
+    },
+    "2_meses": {
+      "Tetravalente_DTP_Hib_2": {
+        "dose": "2ª dose",
+        "indicacao": "Difteria, tétano, coqueluche, meningite e outras infecções causadas pelo Haemophilus influenzae tipo b"
+      },
+      "VOP_2": {
+        "dose": "2ª dose",
+        "indicacao": "Poliomielite"
+      },
+      "VORH_2": {
+        "dose": "2ª dose",
+        "indicacao": "Diarréia por Rotavírus"
+      }
+    },
+    "4_meses": {
+      "Tetravalente_DTP_Hib_3": {
+        "dose": "3ª dose",
+        "indicacao": "Difteria, tétano, coqueluche, meningite e outras infecções causadas pelo Haemophilus influenzae tipo b"
+      },
+      "VOP_3": {
+        "dose": "3ª dose",
+        "indicacao": "Poliomielite"
+      },
+      "Hepatite_B_3": {
+        "dose": "3ª dose",
+        "indicacao": "Hepatite B"
+      }
+    },
+    "9_meses": {
+      "Febre_Amarela_1": {
+        "dose": "dose inicial",
+        "indicacao": "Febre amarela"
+      }
+    },
+    "12_meses": {
+      "SRC": {
+        "dose": "dose única",
+        "indicacao": "Sarampo, rubéola e caxumba"
+      }
+    },
+    "15_meses": {
+      "VOP_reforco": {
+        "dose": "reforço",
+        "indicacao": "Poliomielite"
+      },
+      "DTP_1_reforco": {
+        "dose": "1º reforço",
+        "indicacao": "Difteria, tétano e coqueluche"
+      }
+    },
+    "4_6_anos": {
+      "DTP_2_reforco": {
+        "dose": "2º reforço",
+        "indicacao": "Difteria, tétano e coqueluche"
+      },
+      "SRC_reforco": {
+        "dose": "reforço",
+        "indicacao": "Sarampo, rubéola e caxumba"
+      }
+    },
+    "10_anos": {
+      "Febre_Amarela_reforco": {
+        "dose": "reforço",
+        "indicacao": "Febre amarela"
+      }
+    }
+  }
+}
+]

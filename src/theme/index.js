@@ -9,7 +9,7 @@ export const theme = {
   bgblue: "#EFF6FF",
   box: "#E0EBFF",
   cardAdd: "#F1F5F9",
-  checklist: "BDE7FF",
+  checklist: "#BDE7FF",
   slate950: "#020617",
   slate700: "#334155",
   slate500: "#64748B",
