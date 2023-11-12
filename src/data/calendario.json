@@ -1,6 +1,6 @@
 [{
   "calendario_vacinacao": {
-    "ao_nascer": {
+    "Ao_nascer": {
       "BCG": {
         "dose": "única",
         "indicacao": "Formas graves de tuberculose"

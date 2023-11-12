@@ -1,14 +1,14 @@
 import { ThemeProvider } from 'styled-components';
-import { Home } from './screens/Home';
 import { theme } from './theme';
-import { Login } from './screens/Login';
-import { Calendario } from './screens/Calendario';
+import { Cadastro } from './screens/Paciente';
+import { Usuarios } from './screens/Usuarios';
+import Routes from './routes/Routes';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Calendario />
+        <Routes />
       </div>
     </ThemeProvider>
   );
