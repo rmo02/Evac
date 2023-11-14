@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Calendario } from '../screens/Calendario';
@@ -7,6 +6,7 @@ import { Login } from '../screens/Login';
 import { Cadastro } from '../screens/Paciente';
 import { Home } from '../screens/Home';
 import { DetailPaciente } from '../screens/DetailPaciente';
+import { CriarUsers } from '../screens/CriarUsers';
 
 
 const Routes = () => {
@@ -19,6 +19,7 @@ const Routes = () => {
         <Route path="/usuarios" component={Usuarios} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/userDetail/:id" component={DetailPaciente} />
+        <Route path="/criarUsers/:title" component={CriarUsers} />
       </Switch>
     </Router>
   );
