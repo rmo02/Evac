@@ -38,7 +38,7 @@ export function CriarUsers() {
     });
 
     setTimeout(() => {
-      window.location.href = '/cadastro';
+      window.location.href = "/cadastro";
     }, 3500);
   };
 
@@ -47,6 +47,18 @@ export function CriarUsers() {
     title === "Responsavel" && (await PostResponsavel(data, notify));
     title === "Crianca" && (await PostPaciente(data, notify));
     title === "Vacina" && (await PostVacina(data, notify));
+  };
+
+  // const wpp = async () => {
+  //   // https://api.whatsapp.com/send?phone=5511912345678&text=Olá.%20Vi%20o%20produto%20no%20Facebook,%20aguardo%20mais%20informações.
+  //   let link = `https://api.whatsapp.com/send?phone=5598984324158&text=Olá.%20Vi%20o%20produto%20no%20Facebook,%20aguardo%20mais%20informações.`
+    
+  //   window.open(link)
+  
+  // };
+
+  const Voltar = () => {
+    window.location.href = "/cadastro";
   };
 
   return (
@@ -69,7 +81,7 @@ export function CriarUsers() {
             </Card>
             <Buttons>
               <Button title="Salvar" onClick={handleSubmit(onSubmit)} />
-              <Button title="Cancelar" onClick={() => {}} />
+              <Button title="Cancelar" onClick={() => Voltar()} />
             </Buttons>
           </Content>
         </Center>
@@ -95,7 +107,10 @@ const PostMedico = async (data, notify) => {
     const res = await api.post("/medico", data);
     notify();
   } catch (error) {
-    console.log(error);
+    toast.error("Erro ao cadastrar médico", {
+      position: "top-right",
+      theme: "light",
+    });
   }
 };
 
@@ -104,42 +119,52 @@ const PostResponsavel = async (data, notify) => {
     const res = await api.post("/responsavel/", data);
     notify();
   } catch (error) {
-    console.log(error);
+    toast.error("Erro ao cadastrar responsável", {
+      position: "top-right",
+      theme: "light",
+    });
   }
 };
 
 const PostPaciente = async (data, notify) => {
   try {
     const res = await api.post("/usuario/", {
-      nome:data.nome,
-      email:data.email,
-      cpf:data.cpf,
-      dataNascimento:data.dataNascimento,
-      responsavelId:data.responsavelId
+      nome: data.nome,
+      email: data.email,
+      cpf: data.cpf,
+      dataNascimento: data.dataNascimento,
+      responsavelId: data.responsavelId,
     });
     notify();
   } catch (error) {
-    console.log(error);
+    toast.error("Erro ao cadastrar Paciente", {
+      position: "top-right",
+      theme: "light",
+    });
   }
 };
 
 const PostVacina = async (data, notify) => {
   try {
-    // const { dataVacinacao, ...restData } = data;
-    // console.log("Data antes da formatação:", dataVacinacao);
-    // const dataVacinacaoFormatada = dataVacinacao ? formatarDataParaBackend(dataVacinacao) : null;
-    // console.log("Data formatada:", dataVacinacaoFormatada);
-
     const res = await api.post("/vacina/", data);
-
     notify();
+
+    let link = `https://wa.me/5598984324158?text=Ol%C3%A1,%20A%20vacina%20aplicada%20foi:%20${data.nomeVacina}%0ANa%20data:%20${data.dataVacinacao}%0AFique%20informado%20sobre%20o%20calend%C3%A1rio%20de%20vacina%C3%A7%C3%A3o:%20https://www.gov.br/saude/pt-br/vacinacao/calendario`
+    
+
+    setTimeout(() => {
+      window.open(link);
+    }, 2000);
+
+    
   } catch (error) {
     console.error(error);
-    toast.error("Erro ao cadastrar vacina", { position: "top-right", theme: "light" });
+    toast.error("Erro ao cadastrar vacina", {
+      position: "top-right",
+      theme: "light",
+    });
   }
 };
-
-// const formatarDataParaBackend = (data) => {
 
 //   // Corrigindo a ordem para "ano-mês-dia"
 //   const [dia, mes, ano] = data.split('-');

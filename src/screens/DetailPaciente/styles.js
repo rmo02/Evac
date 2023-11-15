@@ -123,6 +123,7 @@ export const InfoDocs = styled.div`
 
 export const ContainerAnexos = styled.div`
   display: flex;
+  width: 60rem;
   background-color: ${(props) => props.theme["white"]};
   padding: 1.5rem 2.25rem 2.25rem 2.25rem;
   align-items: flex-start;

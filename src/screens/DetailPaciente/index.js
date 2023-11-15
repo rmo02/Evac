@@ -52,8 +52,6 @@ export function DetailPaciente(){
                                         );
                                     })
                                 }
-                                
-
                             </ContainerAnexos>
                     </ContainerFilho>
                 </ContainerPai>

@@ -14,6 +14,7 @@ export const ContainerCard = styled.div`
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
+  width: 60rem;
   gap: 0.625rem;
   border-radius: 8px;
   background-color:  ${(props) => props.theme["white"]};

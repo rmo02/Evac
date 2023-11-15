@@ -3,10 +3,56 @@ import styled from "styled-components";
 export const Container = styled.div`
 background-color: ${({ theme }) => theme['white']};
 display: flex;
-justify-content: center;
-align-items: center;
+justify-content: flex-start;
+align-items: flex-start;
+padding-left: 5rem;
 width: 100%;
 height: 100vh;
+flex-direction: column;
+`;
+
+export const Center = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+`;
+
+export const ContainerBox = styled.div`
+  height: auto;
+  display: flex;
+  padding: 1.5rem 1.5rem 3.5rem 2.25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.25rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  /* Shadow Blue 0.3 */
+  box-shadow: 0px 5px 40px -5px rgba(59, 130, 246, 0.3);
+`;
+
+export const ContainerEletrica = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+`;
+
+export const ContainerDasEscolhas = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+`;
+
+export const Box = styled.button`
+  border-width: 0px;
+  display: flex;
+  width: 3.8125rem;
+  padding: 0.5625rem 5.3125rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: #E0EBFF;
 `;
 
 export const Card = styled.div`
