@@ -69,7 +69,7 @@ export function Home() {
                   <SubTitle>{vacinas?.length} Vacinas</SubTitle>
                 </Box>
                 <Box>
-                  <SubTitle>{medico?.length} Vacinas</SubTitle>
+                  <SubTitle>{medico?.length} Medicos</SubTitle>
                 </Box>
               </ContainerDasEscolhas>
             </ContainerEletrica>

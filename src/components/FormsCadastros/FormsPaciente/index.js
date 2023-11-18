@@ -41,15 +41,15 @@ export function FormsPaciente({control}){
           />
         </Form>
         <Form>
-            <Subtitle>Email</Subtitle>
+            <Subtitle>Contato</Subtitle>
             <Controller
             control={control}
-            name="email"
-            rules={{ required: "Informe o email" }}
+            name="numTelefone"
+            rules={{ required: "Informe o contato" }}
             render={({ field: { onChange, value } }) => (
               <InputArea
-                type="email"
-                placeholder="example@gmail.com"
+                type="text"
+                placeholder="98912345678"
                 value={value}
                 onChange={onChange}
               />

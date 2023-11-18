@@ -17,3 +17,4 @@ export const Subtitle = styled.p`
   margin-bottom: 8px;
   font-family: "Lato", sans-serif;
 `;
+

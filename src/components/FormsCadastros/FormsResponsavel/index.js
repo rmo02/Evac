@@ -22,15 +22,31 @@ export function FormsResponsavel({control}){
           />
         </Form>
         <Form>
-            <Subtitle>Email</Subtitle>
+            <Subtitle>CPF</Subtitle>
             <Controller
             control={control}
-            name="email"
-            rules={{ required: "Informe o email" }}
+            name="cpf"
+            rules={{ required: "Informe o cpf" }}
             render={({ field: { onChange, value } }) => (
               <InputArea
-                type="email"
-                placeholder="example@gmail.com"
+                type="text"
+                placeholder="123.456.789-00"
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+        </Form>
+        <Form>
+            <Subtitle>Endereço</Subtitle>
+            <Controller
+            control={control}
+            name="endereco"
+            rules={{ required: "Informe o endereço" }}
+            render={({ field: { onChange, value } }) => (
+              <InputArea
+                type="text"
+                placeholder="Rua beta, Qd Alfa"
                 value={value}
                 onChange={onChange}
               />

@@ -5,7 +5,7 @@ import api from "../../../api";
 import { useEffect, useState } from "react";
 import { Dropdown } from "../../DropDown";
 
-export function FormsVacina({ control }) {
+export function FormsVacina({ control, setValue }) {
   const [paciente, setPaciente] = useState();
   const [medico, setMedico] = useState();
 
@@ -18,7 +18,16 @@ export function FormsVacina({ control }) {
     try {
       const res = await api.get("/usuario");
       setPaciente(res.data);
-      console.log(res.data);
+    } catch (error) {
+      console.log("Erro ao carregar responsáveis", error);
+    }
+  };
+
+  const findPaciente = async (id) => {
+    try {
+      const res = await api.get(`/usuario/${id}`);
+      setValue('numTelefone', res.data.numTelefone || "");
+      setValue('cpf', res.data.cpf || "");
     } catch (error) {
       console.log("Erro ao carregar responsáveis", error);
     }
@@ -28,7 +37,6 @@ export function FormsVacina({ control }) {
     try {
       const res = await api.get("/medico");
       setMedico(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log("Erro ao carregar responsáveis", error);
     }
@@ -37,15 +45,56 @@ export function FormsVacina({ control }) {
   return (
     <>
       <Form>
-        <Subtitle>Email</Subtitle>
+        <Subtitle>Paciente</Subtitle>
         <Controller
           control={control}
-          name="email"
-          rules={{ required: "Informe o email" }}
+          name="usuarioId"
+          rules={{ required: "Informe o paciente que irá receber a dose" }}
+          render={({ field: { onChange, value } }) => (
+            <Dropdown
+              options={paciente?.map((resp) => ({
+                title: resp.nome,
+                value: resp.id,
+              }))}
+              value={value}
+              onChange={(selectedId) => {
+                onChange(selectedId);
+                findPaciente(selectedId); // Call findPaciente when the patient changes
+              }}
+            />
+          )}
+        />
+      </Form>
+      <Form>
+        <Subtitle>Contato</Subtitle>
+        <Controller
+          disabled={true}
+          control={control}
+          name="numTelefone"
+          rules={{ required: "Informe o contato" }}
           render={({ field: { onChange, value } }) => (
             <InputArea
-              type="email"
-              placeholder="example@gmail.com"
+              disabled={true}
+              type="text"
+              placeholder="9812345678"
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
+      </Form>
+      <Form>
+        <Subtitle>CPF</Subtitle>
+        <Controller
+          disabled={true}
+          control={control}
+          name="cpf"
+          rules={{ required: "Informe o cpf" }}
+          render={({ field: { onChange, value } }) => (
+            <InputArea
+              disabled={true}
+              type="text"
+              placeholder="123.456.789-00"
               value={value}
               onChange={onChange}
             />
@@ -104,26 +153,7 @@ export function FormsVacina({ control }) {
           )}
         />
       </Form>
-      <Form>
-        <Subtitle>Paciente</Subtitle>
-        <Controller
-          control={control}
-          name="usuarioId"
-          rules={{ required: "Informe o paciente que irá receber a dose" }}
-          render={({ field: { onChange, value } }) => (
-            <Dropdown
-              options={paciente?.map((resp) => ({
-                title: resp.nome,
-                value: resp.id,
-              }))}
-              value={value}
-              onChange={(selectedId) => {
-                onChange(selectedId);
-              }}
-            />
-          )}
-        />
-      </Form>
+
     </>
   );
 }

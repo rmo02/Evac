@@ -30,20 +30,23 @@ function calculateAge(birthdate) {
   return age;
 }
 
-function formatDataVacinacao(dataNascimento) {
-  const date = new Date(dataNascimento);
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-  const year = date.getFullYear();
-
-  return `${day}-${month}-${year}`;
-}
-
 export function CardPacienteDetails({ data }) {
   const age = useMemo(
     () => calculateAge(data?.dataNascimento),
     [data?.dataNascimento]
   );
+
+  const formattedDate = useMemo(() => {
+    if (data?.dataNascimento) {
+      const date = new Date(`${data.dataNascimento}T00:00:00`);
+      return date.toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+    }
+    return "";
+  }, [data?.dataNascimento]);
 
   return (
     <>
@@ -60,12 +63,12 @@ export function CardPacienteDetails({ data }) {
               <Subtitle>{age} anos</Subtitle>
             </DetalhesEquipamento>
             <DetalhesEquipamento>
-              <Title>Email</Title>
-              <Subtitle>{data?.email}</Subtitle>
+              <Title>Contato</Title>
+              <Subtitle>{data?.numTelefone}</Subtitle>
             </DetalhesEquipamento>
             <DetalhesEquipamento>
               <Title>Nascimento</Title>
-              <Subtitle>{formatDataVacinacao(data?.dataNascimento)}</Subtitle>
+              <Subtitle>{formattedDate}</Subtitle>
             </DetalhesEquipamento>
             <DetalhesEquipamento>
               <Title>CPF</Title>

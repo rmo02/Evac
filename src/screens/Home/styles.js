@@ -6,8 +6,7 @@ display: flex;
 justify-content: flex-start;
 align-items: flex-start;
 padding-left: 5rem;
-width: 100%;
-height: 100vh;
+width: 100vw;
 flex-direction: column;
 `;
 
@@ -15,6 +14,8 @@ export const Center = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
+  margin-left: 10rem;
   gap: 1.5rem;
 `;
 
