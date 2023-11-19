@@ -1,4 +1,3 @@
-import { Button } from "../../components/Button";
 import {
   BntEntrar,
   BntTrocarSenha,
@@ -9,34 +8,39 @@ import {
   Content,
   Frame187,
   Frame201,
-  Icon,
-  Image,
   Input,
   Title,
   TitleBy,
   TitleEmpresa,
   TitleEntrar,
-  TitleError,
   TitleForms,
   TitleTrocarSenha,
 } from "./styles";
-import medicoLogo from "../../assets/medicoLogo.png";
-import { useForm, Controller } from "react-hook-form";
-import { useState } from "react";
-import { InputArea } from "../../components/Input";
 
-export function Login() {
+import { useForm, Controller } from "react-hook-form";
+
+import { InputArea } from "../../components/Input";
+import { useNavigate } from "react-router-dom";
+import api from "../../api";
+
+export function Cadastrar() {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({});
 
-  const [loginError, setloginError] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log(data)
+    try {
+      const res = await api.post("/register", data);
+      navigate('/login');
+    } catch (error) {
+      console.log("error ao fazer cadastro", error);
+    }
   };
+
 
 
   return (
@@ -44,26 +48,19 @@ export function Login() {
       <Container>
           <Frame201>
             <Frame187>
-              <Title>Bem-vindo ao</Title>
-              <Title>E-vac</Title>
+              <Title>Cadastre-se</Title>
             </Frame187>
             <Content>
-              
-            <ContainerError>
-                <Icon />
-                <TitleError>Email ou senha incorretos</TitleError>
-            </ContainerError>
-          
               <Input>
-                <TitleForms>Email</TitleForms>
+                <TitleForms>Username</TitleForms>
                 <Controller
                   control={control}
-                  name="email"
+                  name="username"
                   rules={{ required: "Informe o email" }}
                   render={({ field: { onChange, value } }) => (
                     <InputArea
                       type="text"
-                      placeholder="email"
+                      placeholder="user"
                       value={value}
                       onChange={onChange}
                       style={{ width: "17.5rem" }}
@@ -90,10 +87,10 @@ export function Login() {
               </Input>
               <ContainerButtons>
                 <BntEntrar type="submit" onClick={handleSubmit(onSubmit)}>
-                  <TitleEntrar>Entrar</TitleEntrar>
+                  <TitleEntrar>Registrar</TitleEntrar>
                 </BntEntrar>
-                <BntTrocarSenha>
-                  <TitleTrocarSenha>Esqueci minha senha</TitleTrocarSenha>
+                <BntTrocarSenha onClick={()=>navigate('/login')}>
+                  <TitleTrocarSenha>Voltar</TitleTrocarSenha>
                 </BntTrocarSenha>
               </ContainerButtons>
             </Content>

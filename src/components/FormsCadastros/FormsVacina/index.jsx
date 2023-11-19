@@ -2,12 +2,14 @@ import { Controller } from "react-hook-form";
 import { InputArea } from "../../Input";
 import { Form, Subtitle } from "./styles";
 import api from "../../../api";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Dropdown } from "../../DropDown";
+import { AuthContext } from "../../../context/AuthContext";
 
 export function FormsVacina({ control, setValue }) {
   const [paciente, setPaciente] = useState();
   const [medico, setMedico] = useState();
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     getPaciente();
@@ -16,7 +18,11 @@ export function FormsVacina({ control, setValue }) {
 
   const getPaciente = async () => {
     try {
-      const res = await api.get("/usuario");
+      const res = await api.get("/usuario", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setPaciente(res.data);
     } catch (error) {
       console.log("Erro ao carregar responsáveis", error);
@@ -25,7 +31,11 @@ export function FormsVacina({ control, setValue }) {
 
   const findPaciente = async (id) => {
     try {
-      const res = await api.get(`/usuario/${id}`);
+      const res = await api.get(`/usuario/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setValue('numTelefone', res.data.numTelefone || "");
       setValue('cpf', res.data.cpf || "");
     } catch (error) {
@@ -35,7 +45,11 @@ export function FormsVacina({ control, setValue }) {
 
   const getMedico = async () => {
     try {
-      const res = await api.get("/medico");
+      const res = await api.get("/medico", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setMedico(res.data);
     } catch (error) {
       console.log("Erro ao carregar responsáveis", error);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../api";
 import { Header } from "../../components/Header";
 import {
@@ -11,17 +11,22 @@ import {
   SubTitle,
   Title,
 } from "./styles";
+import { AuthContext } from "../../context/AuthContext";
 
 export function Home() {
   const [pacientes, setPacientes] = useState();
   const [vacinas, setVacinas] = useState();
   const [medico, setMedico] = useState();
+  const { token } = useContext(AuthContext);
 
   const getUsuario = async () => {
     try {
-      const res = await api.get("/usuario");
+      const res = await api.get("/usuario", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setPacientes(res.data);
-      console.log("usuarios", res.data);
     } catch (error) {
       console.log("Erro ao retornar usuários");
     }
@@ -29,9 +34,12 @@ export function Home() {
 
   const getVacina = async () => {
     try {
-      const res = await api.get("/vacina");
+      const res = await api.get("/vacina", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setVacinas(res.data);
-      console.log("vacinas", res.data);
     } catch (error) {
       console.log("Erro ao retornar usuários");
     }
@@ -39,9 +47,12 @@ export function Home() {
 
   const getMedico = async () => {
     try {
-      const res = await api.get("/medico");
+      const res = await api.get("/medico", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setMedico(res.data);
-      console.log("medicos", res.data);
     } catch (error) {
       console.log("Erro ao retornar usuários");
     }

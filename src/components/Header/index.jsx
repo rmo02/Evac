@@ -13,7 +13,7 @@ export function Header() {
         <PhosphorLogo size={32} color="#FFF"/>
         <ListItems>
           <li>
-            <a href="/">Início</a>
+            <a href="/home">Início</a>
           </li>
           <li>
             <a href="/calendario">Calendário</a>

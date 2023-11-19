@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Header } from '../../components/Header';
 import api from '../../api';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
     ContainerAvo,
     ContainerFilho,
@@ -13,10 +13,12 @@ import {
   } from "./styles";
 import { CardPacienteDetails } from '../../components/CardPacienteDetails';
 import { CardVacina } from '../../components/CardVacinas';
+import { AuthContext } from '../../context/AuthContext';
 
 export function DetailPaciente(){
     const { id } = useParams();
     const [paciente, setPaciente]= useState();
+    const { token } = useContext(AuthContext);
 
     useEffect(() => {
         getPaciente()
@@ -25,8 +27,11 @@ export function DetailPaciente(){
 
     const getPaciente = async() => {
         try {
-            const res = await api.get(`/usuario/${id}`)
-            console.log(res.data)
+            const res = await api.get(`/usuario/${id}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              })
             setPaciente(res.data);
         } catch (error) {
             console.log("Erro ao pegar dados do usuário")

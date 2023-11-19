@@ -20,10 +20,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../api";
 import { FormsVacina } from "../../components/FormsCadastros/FormsVacina";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 export function CriarUsers() {
   const { title } = useParams();
   const { control, handleSubmit, setValue } = useForm({});
+  const { token } = useContext(AuthContext);
 
   const notify = () => {
     toast.success("Cadastrado com sucesso", {
@@ -43,10 +46,10 @@ export function CriarUsers() {
   };
 
   const onSubmit = async (data) => {
-    title === "Medico" && (await PostMedico(data, notify));
-    title === "Responsavel" && (await PostResponsavel(data, notify));
-    title === "Crianca" && (await PostPaciente(data, notify));
-    title === "Vacina" && (await PostVacina(data, notify));
+    title === "Medico" && (await PostMedico(data, notify, token));
+    title === "Responsavel" && (await PostResponsavel(data, notify, token));
+    title === "Crianca" && (await PostPaciente(data, notify, token));
+    title === "Vacina" && (await PostVacina(data, notify, token));
   };
 
 
@@ -95,9 +98,13 @@ export function CriarUsers() {
   );
 }
 
-const PostMedico = async (data, notify) => {
+const PostMedico = async (data, notify, token) => {
   try {
-    const res = await api.post("/medico", data);
+    const res = await api.post("/medico", data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     notify();
   } catch (error) {
     if (error.response && error.response.data && error.response.data.errors) {
@@ -114,9 +121,13 @@ const PostMedico = async (data, notify) => {
   }
 };
 
-const PostResponsavel = async (data, notify) => {
+const PostResponsavel = async (data, notify, token) => {
   try {
-    const res = await api.post("/responsavel/", data);
+    const res = await api.post("/responsavel/", data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     notify();
   } catch (error) {
     if (error.response && error.response.data && error.response.data.errors) {
@@ -133,9 +144,13 @@ const PostResponsavel = async (data, notify) => {
   }
 };
 
-const PostPaciente = async (data, notify) => {
+const PostPaciente = async (data, notify, token) => {
   try {
-    const res = await api.post("/usuario/", data);
+    const res = await api.post("/usuario/", data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     notify();
   } catch (error) {
     if (error.response && error.response.data && error.response.data.errors) {
@@ -153,9 +168,13 @@ const PostPaciente = async (data, notify) => {
   }
 };
 
-const PostVacina = async (data, notify) => {
+const PostVacina = async (data, notify, token) => {
   try {
-    const res = await api.post("/vacina/", data);
+    const res = await api.post("/vacina/", data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     notify();
 
     let link = `https://wa.me/55${data.numTelefone}?text=Ol%C3%A1,%20A%20vacina%20aplicada%20foi:%20${data.nomeVacina}%0ANa%20data:%20${data.dataVacinacao}%0AFique%20informado%20sobre%20o%20calend%C3%A1rio%20de%20vacina%C3%A7%C3%A3o:%20https://www.gov.br/saude/pt-br/vacinacao/calendario`

@@ -2,11 +2,13 @@ import { Controller } from "react-hook-form";
 import { InputArea } from "../../Input";
 import { Form, Subtitle } from "./styles";
 import api from "../../../api";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Dropdown } from "../../DropDown";
+import { AuthContext } from "../../../context/AuthContext";
 
 export function FormsPaciente({control}){
    const [responsavel, setResponsavel] = useState();
+   const { token } = useContext(AuthContext);
 
    useEffect(() => {
     getResponsavel()
@@ -14,7 +16,11 @@ export function FormsPaciente({control}){
 
    const getResponsavel = async () => {
     try {
-      const res = await api.get("/responsavel");
+      const res = await api.get("/responsavel", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setResponsavel(res.data);
       console.log(res.data)
     } catch (error) {

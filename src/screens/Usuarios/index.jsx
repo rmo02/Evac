@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CardUsuario } from "../../components/CardUsuario";
 import { Header } from "../../components/Header";
 import { SearchBar } from "../../components/SearchBar";
-import { Link } from 'react-router-dom';
 import {
   Ativos,
   Center,
@@ -14,10 +13,12 @@ import {
   Title,
 } from "./styles";
 import api from "../../api";
+import { AuthContext } from "../../context/AuthContext";
 
 export function Usuarios() {
   const [pesquisar, setPesquisar] = useState("");
   const [pacientes, setPacientes] = useState([]);
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     getPacientes();
@@ -25,10 +26,14 @@ export function Usuarios() {
 
   async function getPacientes() {
     try {
-      const res = await api.get("/usuario");
+      const res = await api.get("/usuario", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setPacientes(res.data);
     } catch (error) {
-      console.log(error);
+      console.log('Erro ao careggar todos os usuários');
     }
   }
 
