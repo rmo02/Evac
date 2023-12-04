@@ -71,7 +71,7 @@ export function Login() {
               </ContainerError>
             )}
             <Input>
-              <TitleForms>Username</TitleForms>
+              <TitleForms>Email</TitleForms>
               <Controller
                 control={control}
                 name="username"
@@ -79,7 +79,7 @@ export function Login() {
                 render={({ field: { onChange, value } }) => (
                   <InputArea
                     type="text"
-                    placeholder="user"
+                    placeholder="email"
                     value={value}
                     onChange={onChange}
                     style={{ width: "17.5rem" }}

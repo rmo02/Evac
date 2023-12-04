@@ -60,7 +60,7 @@ export function Cadastrar() {
                   render={({ field: { onChange, value } }) => (
                     <InputArea
                       type="text"
-                      placeholder="user"
+                      placeholder="email"
                       value={value}
                       onChange={onChange}
                       style={{ width: "17.5rem" }}
