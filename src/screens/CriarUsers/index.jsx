@@ -153,6 +153,7 @@ const PostPaciente = async (data, notify, token) => {
     });
     notify();
   } catch (error) {
+    console.log(error)
     if (error.response && error.response.data && error.response.data.errors) {
       const errorMessage = error.response.data.errors[0].defaultMessage;
       toast.error(errorMessage, {

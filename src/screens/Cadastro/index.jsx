@@ -16,12 +16,12 @@ import {
   TitleForms,
   TitleTrocarSenha,
 } from "./styles";
-
 import { useForm, Controller } from "react-hook-form";
-
+import "react-toastify/dist/ReactToastify.css";
 import { InputArea } from "../../components/Input";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
+import { ToastContainer, toast } from "react-toastify";
 
 export function Cadastrar() {
   const {
@@ -37,8 +37,12 @@ export function Cadastrar() {
       const res = await api.post("/register", data);
       navigate('/login');
     } catch (error) {
-      console.log("error ao fazer cadastro", error);
-    }
+      const errorMessage = error.response?.data
+      toast.error(errorMessage, {
+        position: "top-right",
+        theme: "light",
+      });
+  }
   };
 
 
@@ -100,6 +104,18 @@ export function Cadastrar() {
             </ContainerBy>
           </Frame201>
       </Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

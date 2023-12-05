@@ -51,7 +51,6 @@ export const ContainerDasEscolhas = styled.div`
 
 export const Box = styled.button`
   border-width: 0px;
-  display: flex;
   width: 14.8125rem;
   padding: 0.5625rem 5.3125rem;
   justify-content: center;

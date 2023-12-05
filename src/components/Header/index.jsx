@@ -25,7 +25,7 @@ export function Header() {
             <a href="/cadastro">Cadastro</a>
           </li>
           <li>
-            <a href="#">Notícias</a>
+            <a href="/noticias">Notícias</a>
           </li>
           <li>
             <a href="#">Gestão</a>

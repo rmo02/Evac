@@ -10,6 +10,7 @@ import { CriarUsers } from '../screens/CriarUsers';
 import { AuthContext } from '../context/AuthContext';
 import { Cadastrar } from '../screens/Cadastro';
 import { Perfil } from '../screens/Perfil';
+import { Noticias } from '../screens/Noticias';
 
 
 const ProtectedRoutes = () => {
@@ -28,6 +29,7 @@ const ProtectedRoutes = () => {
         <Route path="/usuarios" element={<Usuarios />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/noticias" element={<Noticias />} />
         <Route path="/userDetail/:id" element={<DetailPaciente />} />
         <Route path="/criarUsers/:title" element={<CriarUsers />} />
     </Routes>
