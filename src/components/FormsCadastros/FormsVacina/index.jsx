@@ -5,6 +5,9 @@ import api from "../../../api";
 import { useContext, useEffect, useState } from "react";
 import { Dropdown } from "../../DropDown";
 import { AuthContext } from "../../../context/AuthContext";
+import { vacinasLists } from "../../../data/vacinasLists";
+import CreatableSelect from 'react-select/creatable';
+
 
 export function FormsVacina({ control, setValue }) {
   const [paciente, setPaciente] = useState();
@@ -54,6 +57,15 @@ export function FormsVacina({ control, setValue }) {
     } catch (error) {
       console.log("Erro ao carregar responsáveis", error);
     }
+  };
+
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      width: '9.875rem',
+      height: '1.875rem',
+    }),
   };
 
   return (
@@ -122,11 +134,18 @@ export function FormsVacina({ control, setValue }) {
           name="nomeVacina"
           rules={{ required: "Informe o nome da vacina" }}
           render={({ field: { onChange, value } }) => (
-            <InputArea
-              type="text"
-              placeholder="Testo 100ml"
+            <CreatableSelect
+              options={vacinasLists.map((vacina) => ({
+                label: vacina.title,
+                value: vacina.value,
+              }))}
+              isClearable
+              placeholder="Selecione"
               value={value}
-              onChange={onChange}
+              onChange={(selectedId) => {
+                onChange(selectedId);
+              }}
+              styles={customStyles}
             />
           )}
         />

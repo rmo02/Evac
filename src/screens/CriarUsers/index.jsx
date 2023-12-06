@@ -170,15 +170,16 @@ const PostPaciente = async (data, notify, token) => {
 };
 
 const PostVacina = async (data, notify, token) => {
+  const dados = {...data, nomeVacina: data.nomeVacina?.label}
   try {
-    const res = await api.post("/vacina/", data, {
+    const res = await api.post("/vacina/", dados, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
     notify();
 
-    let link = `https://wa.me/55${data.numTelefone}?text=Ol%C3%A1,%20A%20vacina%20aplicada%20foi:%20${data.nomeVacina}%0ANa%20data:%20${data.dataVacinacao}%0AFique%20informado%20sobre%20o%20calend%C3%A1rio%20de%20vacina%C3%A7%C3%A3o:%20https://www.gov.br/saude/pt-br/vacinacao/calendario`
+    let link = `https://wa.me/55${data.numTelefone}?text=Ol%C3%A1,%20A%20vacina%20aplicada%20foi:%20${data.nomeVacina?.label}%0ANa%20data:%20${data.dataVacinacao}%0AFique%20informado%20sobre%20o%20calend%C3%A1rio%20de%20vacina%C3%A7%C3%A3o:%20https://www.gov.br/saude/pt-br/vacinacao/calendario`
     
     setTimeout(() => {
       window.open(link);
@@ -200,42 +201,3 @@ const PostVacina = async (data, notify, token) => {
   }
 };
 
-//   // Corrigindo a ordem para "ano-mês-dia"
-//   const [dia, mes, ano] = data.split('-');
-
-//   // Mês no JavaScript é baseado em zero, então subtrai 1 do valor do mês
-//   const dataFormatada = new Date(`${ano}-${mes - 1}-${dia}`);
-
-//   const anoFormatado = dataFormatada.getFullYear();
-//   const mesFormatado = (dataFormatada.getMonth() + 1).toString().padStart(2, '0');
-//   const diaFormatado = dataFormatada.getDate().toString().padStart(2, '0');
-
-//   return `${anoFormatado}-${mesFormatado}-${diaFormatado}`;
-// };
-
-// const formatarDataNascimento = (data) => {
-//   console.log(data);
-
-//   // Verificar se a data de nascimento não está vazia ou nula
-//   if (!data) {
-//     return null;
-//   }
-
-//   // Corrigindo a ordem para "dia-mês-ano"
-//   const [dia, mes, ano] = data.split('-');
-
-//   // Verificar se dia, mês e ano são números válidos
-//   if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
-//     console.error('Formato inválido para a data de nascimento.');
-//     return null;
-//   }
-
-//   // Mês no JavaScript é baseado em zero, então subtrai 1 do valor do mês
-//   const dataFormatada = new Date(ano, mes - 1, dia);
-
-//   const anoFormatado = dataFormatada.getFullYear();
-//   const mesFormatado = (dataFormatada.getMonth() + 1).toString().padStart(2, '0');
-//   const diaFormatado = dataFormatada.getDate().toString().padStart(2, '0');
-
-//   return `${diaFormatado}-${mesFormatado}-${anoFormatado}`;
-// };
